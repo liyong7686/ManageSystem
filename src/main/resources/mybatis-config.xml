@@ -5,6 +5,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<!-- 别名 -->
 	<typeAliases>
-		<package name="com.java456.entity"/>
+		<package name="com.managerSystem.entity"/>
 	</typeAliases>
 </configuration>
