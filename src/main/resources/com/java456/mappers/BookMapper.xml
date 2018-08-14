@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java456.dao.BookDao">
+	
+	<resultMap type="Book" id="BookResult">
+		<result property="id" column="id" />
+		<result property="bianhao" column="bianhao" />
+		<result property="name" column="name" />
+		<result property="banhao" column="banhao" />
+		<result property="bianzhu" column="bianzhu" />
+		
+		<result property="chubanshe" column="chubanshe" />
+		<result property="chubanDate" column="chubanDate" />
+		<result property="danjia" column="danjia" />
+		<result property="kucun" column="kucun" />
+	</resultMap>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Book">
+		insert into t_book values(null,#{bianhao},#{name},#{banhao},#{bianzhu},#{chubanshe},#{chubanDate},#{danjia},#{kucun})
+	</insert>
+	
+	<update id="update" parameterType="Book">
+		update t_book
+		<set>
+			<if test="bianhao!=null ">
+				bianhao=#{bianhao},
+			</if>
+			<if test="name!=null ">
+				name=#{name},
+			</if>
+			<if test="banhao!=null ">
+				banhao=#{banhao},
+			</if>
+			<if test="bianzhu!=null ">
+				bianzhu=#{bianzhu},
+			</if>
+			<if test="chubanshe!=null ">
+				chubanshe=#{chubanshe},
+			</if>
+			<if test="chubanDate!=null ">
+				chubanDate=#{chubanDate},
+			</if>
+			<if test="danjia!=null ">
+				danjia=#{danjia},
+			</if>
+			<if test="kucun!=null ">
+				kucun=#{kucun},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<select id="list" parameterType="Map" resultMap="BookResult">
+		select * from t_book
+		<where>
+			<if test="q!=null and q!=''">
+				and (name like #{q}  or bianhao like #{q} or banhao like #{q}  or bianzhu like #{q} or chubanshe like #{q} ) 
+			</if>
+			<if test="date1!=null and date1!='' ">
+		 		and createDateTime &gt; #{date1} 
+			</if>
+			<if test="date2!=null and date2!='' ">
+		 		and createDateTime &lt;  #{date2} 
+			</if>
+			<if test="clientTypeId!=null and clientTypeId!='' ">
+		 		and clientTypeId =  #{clientTypeId} 
+			</if>
+		</where>
+		order by id DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Integer">
+		select	count(*) from t_book
+		<where>
+			<if test="q!=null and q!=''">
+				and (name like #{q}  or bianhao like #{q} or banhao like #{q}  or bianzhu like #{q} or chubanshe like #{q} ) 
+			</if>
+			<if test="date1!=null and date1!='' ">
+		 		and createDateTime &gt; #{date1} 
+			</if>
+			<if test="date2!=null and date2!='' ">
+		 		and createDateTime &lt;  #{date2} 
+			</if>
+			<if test="clientTypeId!=null and clientTypeId!='' ">
+		 		and clientTypeId =  #{clientTypeId} 
+			</if>
+		</where>
+	</select>
+	
+	<select id="findById" parameterType="Integer" resultMap="BookResult">
+		select * from t_book where id=#{id}
+	</select>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from t_book where id=#{id}
+	</delete>
+	
+</mapper> 

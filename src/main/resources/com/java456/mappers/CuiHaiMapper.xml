@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java456.dao.CuiHaiDao">
+	
+	<resultMap type="CuiHai" id="CuiHaiResult">
+		<result property="id" column="id" />
+		<result property="userSubId" column="userSubId" />
+		<result property="jieyuerenId" column="jieyuerenId" />
+		<result property="bookId" column="bookId" />
+		<result property="createDateTime" column="createDateTime" />
+		
+		<association property="userSub" column="userSubId" select="com.java456.dao.UserSubDao.findById"></association>
+		<association property="jieyueren" column="jieyuerenId" select="com.java456.dao.UserDao.findById"></association>
+		<association property="book" column="bookId" select="com.java456.dao.BookDao.findById"></association>
+	</resultMap>
+	
+	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="CuiHai">
+		insert into t_cui_hai values(null,#{userSubId},#{jieyuerenId},#{bookId},#{createDateTime})
+	</insert>
+	
+	<update id="update" parameterType="CuiHai">
+		update t_cui_hai
+		<set>
+			<if test="name!=null ">
+				name=#{name},
+			</if>
+			<if test="carno!=null ">
+				carno=#{carno},
+			</if>
+			<if test="sex!=null ">
+				sex=#{sex},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<select id="list" parameterType="Map" resultMap="CuiHaiResult">
+		select * from t_cui_hai
+		<where>
+			<if test="jieyuerenId!=null and jieyuerenId!='' ">
+		 		and jieyuerenId =  #{jieyuerenId} 
+			</if>
+		</where>
+		order by id DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Integer">
+		select	count(*) from t_cui_hai
+		<where>
+			<if test="jieyuerenId!=null and jieyuerenId!='' ">
+		 		and jieyuerenId =  #{jieyuerenId} 
+			</if>
+		</where>
+	</select>
+	
+	<select id="findById" parameterType="Integer" resultMap="CuiHaiResult">
+		select * from t_cui_hai where id=#{id}
+	</select>
+	
+	<select id="findBySubId" parameterType="Integer" resultMap="CuiHaiResult">
+		select * from t_cui_hai where userSubId=#{subId}
+	</select>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from t_cui_hai where id=#{id}
+	</delete>
+	
+	<delete id="deleteBySubId" parameterType="Integer">
+		delete from t_cui_hai where userSubId=#{subId}
+	</delete>
+	
+	
+</mapper> 
