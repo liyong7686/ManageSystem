@@ -1,17 +1,13 @@
 package com.managerSystem.quartz;
 
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.Resource;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.managerSystem.service.ConfigService;
 import com.managerSystem.service.PublicService;
-import com.managerSystem.util.DateUtil;
 
 
 
