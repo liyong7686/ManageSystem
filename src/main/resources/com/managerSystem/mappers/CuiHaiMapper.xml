@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="bookId" column="bookId" />
 		<result property="createDateTime" column="createDateTime" />
 		
-		<association property="userSub" column="userSubId" select="com.java456.dao.UserSubDao.findById"></association>
-		<association property="jieyueren" column="jieyuerenId" select="com.java456.dao.UserDao.findById"></association>
-		<association property="book" column="bookId" select="com.java456.dao.BookDao.findById"></association>
+		<association property="userSub" column="userSubId" select="com.managerSystem.dao.UserSubDao.findById"></association>
+		<association property="jieyueren" column="jieyuerenId" select="com.managerSystem.dao.UserDao.findById"></association>
+		<association property="book" column="bookId" select="com.managerSystem.dao.BookDao.findById"></association>
 	</resultMap>
 	
 	<insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="CuiHai">

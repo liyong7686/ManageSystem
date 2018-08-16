@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="createDateTime" column="createDateTime" />
 		<result property="userId" column="userId" />
 		
-		<association property="user" column="userId" select="com.java456.dao.UserDao.findById"></association>
+		<association property="user" column="userId" select="com.managerSystem.dao.UserDao.findById"></association>
 	</resultMap>
 	
 	

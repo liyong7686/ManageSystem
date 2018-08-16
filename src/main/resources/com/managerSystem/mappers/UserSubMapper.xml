@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="type" column="type" />
 		
 		
-		<association property="user" column="userId" select="com.java456.dao.UserDao.findById"></association>
-		<association property="book" column="bookId" select="com.java456.dao.BookDao.findById"></association>
+		<association property="user" column="userId" select="com.managerSystem.dao.UserDao.findById"></association>
+		<association property="book" column="bookId" select="com.managerSystem.dao.BookDao.findById"></association>
 		
 	</resultMap>
 	

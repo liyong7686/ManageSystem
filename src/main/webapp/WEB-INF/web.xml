@@ -49,7 +49,7 @@ id="WebApp_ID" version="2.5">
 	
 	<!--  初始化 application  -->
 	<listener>
-		<listener-class>com.java456.service.impl.InitComponent</listener-class>
+		<listener-class>com.managerSystem.service.impl.InitComponent</listener-class>
 	</listener>
 	
 	<!-- 添加对springmvc的支持 -->
