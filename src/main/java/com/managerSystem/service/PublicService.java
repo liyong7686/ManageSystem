@@ -17,6 +17,7 @@ public interface PublicService {
 	 */
 	public void addLeftMenu(ModelAndView mav);
 		
-		
-	 
+	public JSONObject refreshToken(); 
+	
+	public JSONObject refreshTicket(); 
 }

@@ -17,6 +17,7 @@ import com.managerSystem.service.PublicService;
 import com.managerSystem.service.TreeService;
 import com.managerSystem.service.UserService;
 import com.managerSystem.util.MyUtil;
+import com.managerSystem.util.WeiXinUntil;
 
 import net.sf.json.JSONObject;
 
@@ -88,9 +89,19 @@ public class PublicServiceImpl implements PublicService {
 		}
 		return list;
 	}
-	
-	
- 
-	
+
+
+	@Override
+	public JSONObject refreshToken() {
+		
+		return WeiXinUntil.refreshToken();
+	}
+
+
+	@Override
+	public JSONObject refreshTicket() {
+		
+		return null;
+	}
 	
 }
